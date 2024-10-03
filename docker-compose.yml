@@ -1,0 +1,18 @@
+services:
+  users:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npx nx serve users
+    volumes:
+      - ./:/app
+      - nx-cache:/app/.nx
+      - node-modules:/app/node_modules
+    develop:
+      watch:
+        - action: rebuild
+          path: package.json
+
+volumes:
+ node-modules:
+ nx-cache:
